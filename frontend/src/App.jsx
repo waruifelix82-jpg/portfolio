@@ -32,7 +32,7 @@ export default function App() {
 
   // Fetch test from Flask backend
   useEffect(() => {
-    fetch('[https://portfolio-2-uzlj.onrender.com/api/test](https://portfolio-2-uzlj.onrender.com/api/test)')
+    fetchfetch('https://portfolio-2-uzlj.onrender.com/api/test')
       .then((res) => res.json())
       .then((data) => setServerMessage(data.message))
       .catch((err) => {
@@ -103,7 +103,7 @@ export default function App() {
     setFormStatus({ submitting: true, message: 'Sending message...', success: false });
 
     try {
-      const response = await fetch('[https://portfolio-2-uzlj.onrender.com/api/contact](https://portfolio-2-uzlj.onrender.com/api/contact)', {
+      const response = await fetch('https://portfolio-2-uzlj.onrender.com/api/contact', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
