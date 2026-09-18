@@ -32,7 +32,7 @@ export default function App() {
 
   // Fetch test from Flask backend
   useEffect(() => {
-    fetchfetch('https://portfolio-2-uzlj.onrender.com/api/test')
+    fetch('https://portfolio-2-uzlj.onrender.com/api/test')
       .then((res) => res.json())
       .then((data) => setServerMessage(data.message))
       .catch((err) => {
