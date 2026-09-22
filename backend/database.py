@@ -9,7 +9,7 @@ try:
 except ImportError:
     HAS_POSTGRES = False
 
-DATABASE_URL = os.environ.get('postgresql://postgres:[YOUR-PASSWORD]@db.aglcgzllholsxacnfplo.supabase.co:5432/postgres')
+DATABASE_URL = os.environ.get('DATABASE_URL')  # Get the database URL from environment variable
 
 def get_db():
     if DATABASE_URL and HAS_POSTGRES:
