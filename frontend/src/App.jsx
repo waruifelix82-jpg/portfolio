@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import ChatWidget from "./assets/chatwidget";
 
 const phrases = [
   "Hi, I'm Felix",
@@ -14,7 +15,6 @@ export default function App() {
   const [currentText, setCurrentText] = useState('');
   const [isDeleting, setIsDeleting] = useState(false);
   const [loopNum, setLoopNum] = useState(0);
-
   // Backend test connection state
   const [serverMessage, setServerMessage] = useState('Connecting to backend...');
 
@@ -309,6 +309,7 @@ export default function App() {
               </div>
             )}
           </form>
+          <ChatWidget />
         </div>
       </section>
 
@@ -316,6 +317,7 @@ export default function App() {
       <footer>
         © {new Date().getFullYear()} Fellah. Built with Vite, React & External CSS.
       </footer>
+      
     </div>
   );
 }

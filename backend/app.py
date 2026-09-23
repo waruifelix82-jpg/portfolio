@@ -1,11 +1,43 @@
+import os
 from database import get_db, init_db
 from flask import Flask, jsonify, request
 from flask_cors import CORS
-
+from flask import request, jsonify
+from google import genai
 app = Flask(__name__)
 CORS(app, resources={r"/api/*": {"origins": "*"}})
 
-# Automatically initialize database and seed sample data on startup
+client = genai.Client()
+
+@app.route('/api/chat', methods=['POST'])
+def chat_with_ai():
+    data = request.get_json()
+    user_message = data.get('message', '')
+    
+    if not user_message:
+        return jsonify({'error': 'No message provided'}), 400
+
+    # Define your persona / system instructions
+    system_instruction = (
+        "You are an AI portfolio assistant for Fellah, a software engineering student "
+        "and network engineering practitioner skilled in Python, Flask, React, JavaScript, "
+        "PHP, Linux administration, and Cisco networking. Answer questions professionally "
+        "and helpfully on behalf of Fellah based on this profile. Keep responses concise."
+    )
+
+    try:
+        # Use client.chats to properly handle system instructions and messaging with the updated model ID
+        chat = client.chats.create(
+            model='gemini-3.6-flash',
+            config={
+                'system_instruction': system_instruction,
+            }
+        )
+        response = chat.send_message(user_message)
+        return jsonify({'reply': response.text})
+    except Exception as e:
+        return jsonify({'error': str(e)}), 500
+    
 init_db()
 
 
