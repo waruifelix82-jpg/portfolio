@@ -9,11 +9,11 @@ try:
 except ImportError:
     HAS_POSTGRES = False
 
-DATABASE_URL = os.environ.get('DATABASE_URL')  # Get the database URL from environment variable
+DATABASE_URL = os.environ.get('DATABASE_URL')  
 
 def get_db():
     if DATABASE_URL and HAS_POSTGRES:
-        # Handle Render/Supabase connection string prefix format if needed
+        
         db_url = DATABASE_URL
         if db_url.startswith("postgres://"):
             db_url = db_url.replace("postgres://", "postgresql://", 1)
